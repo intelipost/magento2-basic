@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+/*
+ * @package     Intelipost_Basic
+ * @copyright   Copyright (c) 2016 Gamuza Technologies (http://www.gamuza.com.br/)
+ * @author      Eneias Ramos de Melo <eneias@gamuza.com.br>
+ */
+-->
+
+<config>
+    <acl>
+        <resources>
+            <resource id="Magento_Backend::admin">
+                <resource id="Magento_Backend::stores">
+                    <resource id="Magento_Backend::stores_settings">
+                        <resource id="Magento_Config::config">
+                            <resource id="Intelipost_Basic::config" title="Intelipost Basic" sortOrder="0" />
+                        </resource>
+                    </resource>
+                </resource>
+            </resource>
+        </resources>
+    </acl>
+</config>
+

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+/*
+ * @package     Intelipost_Basic
+ * @copyright   Copyright (c) 2016 Gamuza Technologies (http://www.gamuza.com.br/)
+ * @author      Eneias Ramos de Melo <eneias@gamuza.com.br>
+ */
+-->
+
+<config>
+    <default>
+        <intelipost_basic>
+            <settings>
+                <api_url><![CDATA[https://api.intelipost.com.br/api/v1/]]></api_url>
+                <api_key />
+            </settings>
+        </intelipost_basic>
+    </default>
+</config>
+

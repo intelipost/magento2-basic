@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+/*
+ * @package     Intelipost_Basic
+ * @copyright   Copyright (c) 2016 Gamuza Technologies (http://www.gamuza.com.br/)
+ * @author      Eneias Ramos de Melo <eneias@gamuza.com.br>
+ */
+-->
+
+<config>
+    <menu>
+        <add id="Intelipost_Basic::intelipost" title="Intelipost" module="Intelipost_Basic" sortOrder="100" resource="Intelipost_Basic::intelipost" />
+    </menu>
+</config>
+
