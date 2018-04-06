@@ -9,7 +9,7 @@ Navegue até o diretório raíz da sua instalação do Magento 2 e execute os se
 
 ```
 bin/composer require intelipost/magento2-basic   // Faz a requisição do módulo da Intelipost
-bin/magento module:enable Intelipost_Baisc       // Ativa o módulo
+bin/magento module:enable Intelipost_Basic       // Ativa o módulo
 bin/magento setup:upgrade                        // Registra a extensão
 bin/magento setup:di:compile                     // Recompila o projeto Magento
 ```
