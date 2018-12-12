@@ -25,6 +25,7 @@ public function __construct
 
 public function apiRequest ($httpMethod, $apiMethod, $encPostData = false)
 {
+    try {
     $apiUrl = $this->_scopeConfig->getValue ('intelipost_basic/settings/api_url');
     $apiKey = $this->_scopeConfig->getValue ('intelipost_basic/settings/api_key');
 
@@ -49,7 +50,18 @@ public function apiRequest ($httpMethod, $apiMethod, $encPostData = false)
     $response = curl_exec ($curl);
 
     curl_close ($curl);
-
+    
+    $code = curl_getinfo($curl, CURLINFO_HTTP_CODE);
+    
+    file_put_contents('intelipostrequest', $code, FILE_APPEND);
+    file_put_contents('intelipostrequest', print_r($response, true), FILE_APPEND);
+    
+    } catch(\Magento\Framework\Validator\Exception $e)
+    {
+        file_put_contents('intelipostrequest', $e->getMessage(), FILE_APPEND);
+    }
+    
+    
     return $response;
 }
 
