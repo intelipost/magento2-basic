@@ -48,8 +48,6 @@ public function apiRequest ($httpMethod, $apiMethod, $encPostData = false)
     }
 
     $response = curl_exec ($curl);
-
-    curl_close ($curl);
     
     $code = curl_getinfo($curl, CURLINFO_HTTP_CODE);
     
@@ -61,7 +59,7 @@ public function apiRequest ($httpMethod, $apiMethod, $encPostData = false)
         file_put_contents('intelipostrequest', $e->getMessage(), FILE_APPEND);
     }
     
-    
+    curl_close ($curl);
     return $response;
 }
 
