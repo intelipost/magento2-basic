@@ -49,12 +49,7 @@ public function apiRequest ($httpMethod, $apiMethod, $encPostData = false)
 
     $response = curl_exec ($curl);
 
-    curl_close ($curl);
-    
-    $code = curl_getinfo($curl, CURLINFO_HTTP_CODE);
-    
-    file_put_contents('intelipostrequest', $code, FILE_APPEND);
-    file_put_contents('intelipostrequest', print_r($response, true), FILE_APPEND);
+    curl_close ($curl);        
     
     } catch(\Magento\Framework\Validator\Exception $e)
     {
