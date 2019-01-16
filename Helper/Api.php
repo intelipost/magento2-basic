@@ -23,20 +23,21 @@ public function __construct
     $this->_scopeConfig = $scopeConfig;
 }
 
-public function apiRequest ($httpMethod, $apiMethod, $encPostData = false)
+public function apiRequest ($httpMethod, $apiMethod, $encPostData = false, $optionalHeaders = null)
 {
     try {
     $apiUrl = $this->_scopeConfig->getValue ('intelipost_basic/settings/api_url');
     $apiKey = $this->_scopeConfig->getValue ('intelipost_basic/settings/api_key');
+    $headers = array('Content-Type: application/json', "api_key: {$apiKey}");
 
+    if(is_array($optionalHeaders) && sizeof($optionalHeaders) > 0)
+        $headers = array_merge($headers, $optionalHeaders);
+        
     $curl = curl_init ();
 
     curl_setopt($curl, CURLOPT_TIMEOUT, 3);
     curl_setopt($curl, CURLOPT_URL, $apiUrl . $apiMethod);
-    curl_setopt($curl, CURLOPT_HTTPHEADER, array(
-        'Content-Type: application/json',
-        "api_key: {$apiKey}",
-    ));
+    curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
     curl_setopt($curl, CURLOPT_ENCODING , "");
     curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
     curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
