@@ -23,15 +23,12 @@ public function __construct
     $this->_scopeConfig = $scopeConfig;
 }
 
-public function apiRequest ($httpMethod, $apiMethod, $encPostData = false, $optionalHeaders = null)
+public function apiRequest ($httpMethod, $apiMethod, $encPostData = false)
 {
     try {
     $apiUrl = $this->_scopeConfig->getValue ('intelipost_basic/settings/api_url');
     $apiKey = $this->_scopeConfig->getValue ('intelipost_basic/settings/api_key');
-    $headers = array('Content-Type: application/json', "api_key: {$apiKey}");
-
-    if(is_array($optionalHeaders) && sizeof($optionalHeaders) > 0)
-        $headers = array_merge($headers, $optionalHeaders);
+    $headers = array('Content-Type: application/json', "api_key: {$apiKey}", "platform: Magento 2");
         
     $curl = curl_init ();
 
