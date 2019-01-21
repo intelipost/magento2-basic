@@ -28,7 +28,7 @@ public function apiRequest ($httpMethod, $apiMethod, $encPostData = false)
     try {
     $apiUrl = $this->_scopeConfig->getValue ('intelipost_basic/settings/api_url');
     $apiKey = $this->_scopeConfig->getValue ('intelipost_basic/settings/api_key');
-    $headers = array('Content-Type: application/json', "api_key: {$apiKey}", "platform: Magento 2");
+    $headers = array('Content-Type: application/json', "api_key: {$apiKey}", "platform: Magento2");
         
     $curl = curl_init ();
 
