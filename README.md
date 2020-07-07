@@ -22,7 +22,7 @@ Este manual foi divido em duas partes:
 Navegue até o diretório raíz da sua instalação do Magento 2 e execute os seguintes comandos:
 
 ```
-bin/composer require intelipost/magento2-basic   // Faz a requisição do módulo da Intelipost
+composer require intelipost/magento2-basic   // Faz a requisição do módulo da Intelipost
 bin/magento module:enable Intelipost_Basic       // Ativa o módulo
 bin/magento setup:upgrade                        // Registra a extensão
 bin/magento setup:di:compile                     // Recompila o projeto Magento
