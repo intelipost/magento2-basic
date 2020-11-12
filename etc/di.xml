@@ -1,0 +1,31 @@
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <virtualType name="Intelipost\Basic\Logger\IntelipostLogger" type="Magento\Framework\Logger\Monolog">
+        <arguments>
+            <argument name="handlers" xsi:type="array">
+                <item name="error" xsi:type="object">Intelipost\Basic\Logger\Handler\Error</item>
+                <item name="info" xsi:type="object">Intelipost\Basic\Logger\Handler\Info</item>
+                <item name="debug" xsi:type="object">Intelipost\Basic\Logger\Handler\Debug</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <type name="Intelipost\Basic\Client\Intelipost">
+        <arguments>
+            <argument name="logger" xsi:type="object">Intelipost\Basic\Logger\IntelipostLogger</argument>
+            <argument name="scopeConfig" xsi:type="object">\Magento\Framework\App\Config\ScopeConfigInterface</argument>
+        </arguments>
+    </type>
+    <type name="Intelipost\Basic\Console\Test">
+        <arguments>
+            <argument name="clientIntelipost" xsi:type="object">Intelipost\Basic\Client\Intelipost</argument>
+            <argument name="name" xsi:type="string">intelipost:test</argument>
+        </arguments>
+    </type>
+    <type name="Magento\Framework\Console\CommandList">
+        <arguments>
+            <argument name="commands" xsi:type="array">
+                <item name="intelipostTest" xsi:type="object">Intelipost\Basic\Console\Test</item>
+            </argument>
+        </arguments>
+    </type>
+</config>
