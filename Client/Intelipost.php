@@ -5,6 +5,7 @@
  */
 
 namespace Intelipost\Basic\Client;
+
 use Psr\Log\LoggerInterface;
 
 class Intelipost
@@ -53,7 +54,7 @@ class Intelipost
         }
 
         if (!$this->encPostData) {
-            $this->logger->debug("Informações enviadas para a API: " . $encPostData);
+            $this->logger->info("Informações enviadas para a API: " . $encPostData);
         }
         $this->buildCurlOptions($curl);
 
@@ -65,8 +66,6 @@ class Intelipost
             $this->logger->error("Erro ao consultar a API da Intelipost");
             return $response;
         }
-
-        $this->logger->debug("Informações recebidas da API: " . $response);
 
         $this->handleResponse($response);
 
@@ -90,6 +89,16 @@ class Intelipost
 
     protected function handleResponse($response)
     {
-        var_dump($response);
+        $objResponse = json_decode($response);
+        if (!$objResponse) {
+            $this->logger->error("ERROR - API não respondeu");
+            return;
+        }
+        if ($objResponse->status != "OK") {
+            $this->logger->error("ERROR - (" . $objResponse->messages[0]->key . ") " . $objResponse->messages[0]->text);
+            return;
+        }
+
+        $this->logger->info("Informações recebidas da API :" . $response);
     }
 }
