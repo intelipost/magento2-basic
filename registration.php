@@ -10,4 +10,3 @@
     'Intelipost_Basic',
     __DIR__
 );
-
