@@ -41,7 +41,7 @@ class Intelipost
         $response = false;
 
         if (!empty($encPostData) && is_object($encPostData)) {
-            $encPostData=json_encode($encPostData);
+            $encPostData = json_encode($encPostData);
         }
 
         $this->apiUrl = $this->scopeConfig->getValue('intelipost_basic/settings/api_url');
