@@ -40,6 +40,10 @@ class Intelipost
     {
         $response = false;
 
+        if (!empty($encPostData) && is_object($encPostData)) {
+                $encPostData=json_encode($encPostData);
+        }
+
         $this->apiUrl = $this->scopeConfig->getValue('intelipost_basic/settings/api_url');
         $this->apiKey = $this->scopeConfig->getValue('intelipost_basic/settings/api_key');
         $this->httpMethod = $httpMethod;
@@ -53,10 +57,8 @@ class Intelipost
             return $response;
         }
 
-        if (!$this->encPostData) {
-            $this->logger->info("Informações enviadas para a API: " . $encPostData);
-        }
         $this->buildCurlOptions($curl);
+        curl_setopt($curl, CURLOPT_VERBOSE, true);
 
         $response = curl_exec($curl);
 
@@ -74,16 +76,16 @@ class Intelipost
 
     protected function buildCurlOptions($curl)
     {
-        curl_setopt($curl, CURLOPT_TIMEOUT, 3);
+//        curl_setopt($curl, CURLOPT_TIMEOUT, 3);
         curl_setopt($curl, CURLOPT_URL, $this->apiUrl . $this->apiMethod);
         curl_setopt($curl, CURLOPT_HTTPHEADER, $this->headers);
-        curl_setopt($curl, CURLOPT_ENCODING, "");
+//        curl_setopt($curl, CURLOPT_ENCODING, "");
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
-        curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+//        curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
 
         if ($this->httpMethod === self::POST && $this->encPostData) {
             curl_setopt($curl, CURLOPT_POST, true);
-            curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode($this->encPostData));
+            curl_setopt($curl, CURLOPT_POSTFIELDS, $this->encPostData);
         }
     }
 
